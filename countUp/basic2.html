@@ -23,8 +23,10 @@
 
         for(let i = 0 ; i <= totalFrame ; i ++) {
         const 진행도 = i/totalFrame;
+        console.log(진행도)
         setTimeout(()=>{
             count.innerText = parseInt(goal * easeInExpo(진행도));
+            console.log(parseInt(goal * easeInExpo(진행도)))
         },i/frame * 1000)
         // i / frame => i=0, 값=0/ i=1,값1/50 / i =100(최대),값=2 
         //따라서 0초~2초까지라는 얘기. 2초를 넣어버리면 2초뒤에 goal값이 나와버리므로 

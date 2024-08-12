@@ -46,9 +46,9 @@
     <div class="graph">
         <p class="time">t</p>
         <p class="value">v</p>
-
-        <div class="dot"></div>
-        <div class="dot"></div>
+        <div class="dots">
+            <div class="dot"></div>
+        </div>
     </div>
 
     <script>
@@ -59,6 +59,43 @@
         // dot은 자바스크립트로 만들어야 하며,
         // 좌표는 진행도t와 함수를 이용해 얻는 값v을 사용
         // dot의  갯수는 자유롭게 설정할 수 있도록 만들어주세요.
+
+        const dots = document.querySelector('.dots')
+        const container = document.querySelector('.container');
+        
+
+        const time = 2;
+        const goal = 300000;
+        const frame = 50;
+        const totalFrame = time * frame;
+ 
+        
+
+        for(let i = 0 ; i <= totalFrame ; i ++) {
+           
+        const 진행도 = i/totalFrame;
+        console.log(진행도)
+        
+        setTimeout(()=>{
+            const cloneDot = document.createElement('div');
+            cloneDot.classList.add('dot')
+            dots.appendChild(cloneDot);
+
+            cloneDot.style.bottom = `${parseInt(goal * easeInOutCubic(진행도)) / goal * 100}%`;
+            cloneDot.style.left = `${진행도*100}%`
+            
+        },i/frame * 1000)
+        
+    
+        }
+
+    
+
+
+        function easeInOutCubic(x) {
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
+
     </script>
 
     <!-- button은 가속도 개념
