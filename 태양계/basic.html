@@ -24,6 +24,7 @@
             width: 200px;
             height: 200px;
             background-color: red;
+            /* 왼쪽에서 부터 50%, 위에서부터 50% */
             left: 50%;
             top: 50%;
         }
@@ -32,19 +33,41 @@
             width: 20px;
             height: 20px;
             background-color: yellow;
-            
             left: 50%;
-            top: 50%;
+            /* 공전궤도 vin이 absolute라서 거기딱 맞춤 top 0 */
+            top: 0%;.
 
-            
-            animation-name: revolution;
-            animation-duration: 5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            transform-origin: 100px;
-            
+            /* transform-origin: 0px calc(200px + 10px); */
+            /* animation: vinusRevolution 1s infinite linear; */
 
+            /* animation: revolution 2s infinite linear; */
 
+        }
+
+        /* @keyframes vinusRevolution {
+            0%{
+                transform: translate(-50%,calc(-50% - 200px)) rotate(0deg);
+            }
+            100%{
+                transform: translate(-50%,calc(-50% - 200px)) rotate(360deg);
+            }
+        } */
+
+        .earth {
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+            left: 50%;
+            top: 0%;
+    
+        }
+
+        .moon {
+            width: 15px;
+            height: 15px;
+            background-color: grey;
+            left: 50%;
+            top: 0%;
         }
 
         @keyframes revolution {
@@ -55,18 +78,51 @@
                 transform: translate(-50%,-50%) rotate(360deg);
             }
         }
+
+        .공전궤도 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            border: 1px solid white;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+        
+        .vin {
+            width: 400px;
+            height: 400px;
+            animation: revolution infinite 3s linear;
+        }
+        .ear {
+            width: 600px;
+            height: 600px;
+            animation: revolution infinite 12.4s linear;
+        }
+
+        .moo {
+            width: 100px;
+            height: 100px;
+            animation: revolution infinite 0.9s linear;
+        }
+
     </style>
 </head>
 <body>
     <div class="sun orb">
 
     </div>
-    <div class="vinus orb">
+    <div class="공전궤도 vin ">
+        <div class="vinus orb">
+        </div>
     </div>
-
-    <!-- 공전궤도
-            earth
-                공전궤도
-                    moon .. -->
+    <div class="공전궤도 ear">
+        <div class="earth orb">
+            <div class="공전궤도 moo">
+                <div class="moon orb">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
