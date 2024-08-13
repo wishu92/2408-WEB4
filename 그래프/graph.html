@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .graph {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: solid black;
+            border-width: 0 0 1px 1px;
+            margin: 100px;
+        }
+
+        .time {
+            position: absolute;
+            right: 0px;
+            top: 100%;
+        }
+
+        .value {
+            position: absolute;
+            right: calc(100% + 5px);
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            transform: translate(-50%,50%);
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="graph">
+        <p class="time">t</p>
+        <p class="value">v</p>
+        <div class="dots">
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <script>
+        // dot을 새로 만들어서 넣어야하고
+        // 갯수에 맞게 집어넣는데
+        // dot을 가속도에 맞춰 넣기
+        // dot을 이용해 그래프를 그려봅시다
+        // dot은 자바스크립트로 만들어야 하며,
+        // 좌표는 진행도t와 함수를 이용해 얻는 값v을 사용
+        // dot의  갯수는 자유롭게 설정할 수 있도록 만들어주세요.
+
+        const dotss = document.querySelector('.dots')
+    
+        const time = 2;
+        const goal = 10000;
+        const frame = 50;
+        const totalFrame = time * frame;
+ 
+        
+
+        for(let i = 0 ; i <= totalFrame ; i ++) {
+           
+        const 진행도 = i/totalFrame;
+        
+        setTimeout(()=>{
+            const cloneDot = document.createElement('div');
+            cloneDot.classList.add('dot')
+            dotss.appendChild(cloneDot);
+            cloneDot.style.bottom = `${parseInt(goal * easeInOutCubic(진행도)) / goal * 100}%`;
+            cloneDot.style.left = `${진행도*100}%`
+            
+        },i/frame * 1000)
+        
+        }
+
+
+        function easeInOutCubic(x) {
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
+
+
+
+        // 정답
+
+        const dotCount = 300;
+        const dots = document.querySelector('.dots');
+
+        for(let i = 0 ; i <= dotCount ; i ++){
+
+            // 1/dotCount = dotCount 1개당 %구하기(0~1까지기준,) 100까지 하려면 100/dotCount
+            const 진행도 = 1/dotCount * i;
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            
+            dot.style.backgroundColor = `blue`
+
+            //0~100%값으로 만들어주기
+            dot.style.left = `${진행도*100}%`
+            // easeInOutCubic 함수에서 number는 0~1까지의 숫자를 전달해야하므로 함수 안에서는 0~1로,
+            // 그리고 style은 0~100% 로 계산되어야해서 함수 밖에서 *100 해야함.
+            dot.style.bottom = `${easeInBounce(진행도)*100}%`
+            dots.appendChild(dot);
+
+        }
+
+
+        function easeInOutQuint(x) {
+            return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
+        }
+
+        function easeOutBounce(x) {
+            const n1 = 7.5625;
+            const d1 = 2.75;
+
+            if (x < 1 / d1) {
+                return n1 * x * x;
+            } else if (x < 2 / d1) {
+                return n1 * (x -= 1.5 / d1) * x + 0.75;
+            } else if (x < 2.5 / d1) {
+                return n1 * (x -= 2.25 / d1) * x + 0.9375;
+            } else {
+                return n1 * (x -= 2.625 / d1) * x + 0.984375;
+            }
+        }
+
+        function easeInBounce(x) {
+            return 1 - easeOutBounce(1 - x);
+        }
+
+   
+        
+        // 함수화 하는 방법
+
+        markGraph(easeOutBounce,`pink`)
+        
+        function markGraph(함수,color){
+            
+            for(let i = 0 ; i <= dotCount ; i ++){
+                const 진행도 = 1/dotCount * i;
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                
+                // bacc= color로
+                dot.style.backgroundColor = color
+                
+                dot.style.left = `${진행도*100}%`
+                // 진행도에 함수곱하기로
+                dot.style.bottom = `${함수(진행도)*100}%`
+                dots.appendChild(dot);
+                
+            }
+
+        }
+
+    
+
+
+
+    </script>
+
+   
+
+</body>
+</html>
