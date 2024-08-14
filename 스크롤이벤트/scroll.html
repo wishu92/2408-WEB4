@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+        .content{
+            width: 100PX;
+            height: 100px;
+            margin-top: 2000px;
+            background-color: pink;
+            transform: translate(100px);
+            opacity: 0;
+
+        }
+        .content .active{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content"></div>
+
+    <script>
+
+        const content = document.querySelector(`.content`);
+
+        window.addEventListener(`scroll`,()=>{
+        //    getBoundingClientRect(); -> 컨텐츠 기준으로 위치를 알려줌.
+           const pos = content.getBoundingClientRect();
+            // content의 top이 윈도우 높이보다 작아지면 = 밑에서 올라올 때 화면에서 나타나기 시작하면,
+           if(pos.top <= window.innerHeight){
+            content.classList.add(`active`)
+           }else{
+            content.classList.remove(`active`)
+           }
+        })
+    </script>
+</body>
+</html>

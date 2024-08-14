@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    body {
+         height: 5000px;
+    }
+    </style>
+</head>
+<body>
+
+    <script>
+                // 컨텐츠를 움직이는 것이 아니라 브라우저를 움직이는것
+                window.addEventListener(`scroll`,(e)=>{
+            console.log(`스크롤되었다`)
+            // 꼬리표 함수에 변수?를 넣으면 스크롤에 대한 정보가 입력됨.
+            console.log(e)
+            // 스크롤 했을 때 현재 위치 확인방법
+            console.log(window.scrollY)
+        })
+    </script>
+    
+</body>
+</html>

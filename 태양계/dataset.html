@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html에 data-이름="" 방식으로 넣어서 원하는 값을 js에서 쓸 수 있음. -->
+    <div class="hi" data-ment="안녕하세요" data-love="사랑합니다"></div>
+
+    <script>
+        // class 불러오고
+        const hi = document.querySelector('.hi')
+        //경로 hi에 sataset에 ment 불러오기.
+        alert(hi.dataset.ment)
+
+        alert(hi.dataset.love)
+    </script>
+</body>
+</html>

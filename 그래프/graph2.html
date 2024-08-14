@@ -4,11 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .graphs {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: solid black;
+            border-width: 0 0 1px 1px;
+            margin: 100px;
+        }
+
+        .time {
+            position: absolute;
+            right: 0px;
+            top: 100%;
+        }
+
+        .value {
+            position: absolute;
+            right: calc(100% + 5px);
+        }
+
+        .dot {
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            transform: translate(-50%,50%);
+            bottom: 0;
+            left: 0;
+            transition: 0.3s;
+        }
+        
+        .dot.hide {
+            opacity: 0;
+            
+        }
+
+        .contol-graph {
+            border: none;
+            padding: 8px;
+            color: #333;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            margin: 4px;
+            
+        }
+
+        .contol-graph.hide {
+            background-color: gray;
+            color: #333;
+        }
+
+    </style>
 </head>
 <body>
-    <script>
-        // toggle을 이용해 원하는 그래프만 볼 수 있도록 만들기.
+    <div class="graphs">
+        <p class="time">t</p>
+        <p class="value">v</p>
+    </div>
+    <div class="button-container">
 
+    </div>
+
+    <script>
+  
+        const dotCount = 300;
+        let index = 0;
+
+        const graphs = document.querySelector('.graphs')
+        const dots = document.querySelector('.dots');
+        const buttonContainer = document.querySelector('.button-container')
+
+        makeGraph(easeOutBounce,'pink')
+        makeGraph(easeInBounce,'blue')
+        makeGraph(easeOutElastic,'green')
+
+
+
+        function makeGraph(함수,color){
+            const button = document.createElement('button');
+            button.classList.add('contol-graph')
+            // ++index = 일단 하나 올리고시작 = 1,2,3 , index++ = 0,1,2
+            button.innerText = `그래프${++index}`
+            
+            const graph = document.createElement('div');
+            graph.classList.add('graph')
+
+            button.addEventListener('click',()=>{
+
+                for(let i = 0 ; i < graph.childElementCount; i ++ ){
+                    // classList.add아니고 toggle
+                    graph.children[i].classList.toggle('hide')
+                }
+                button.classList.toggle('hide')
+
+            })
+
+            buttonContainer.appendChild(button)
+
+            for(let i = 0 ; i <= dotCount ; i ++){
+                const 진행도 = 1/dotCount * i;
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+
+                dot.style.backgroundColor = color
+                dot.style.left = `${진행도*100}%`
+                dot.style.bottom = `${함수(진행도)*100}%`
+                graph.appendChild(dot);
+            }
+            graphs.appendChild(graph)
+        }
+
+
+        function easeInOutQuint(x) {
+            return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
+        }
+
+        function easeOutBounce(x) {
+            const n1 = 7.5625;
+            const d1 = 2.75;
+
+            if (x < 1 / d1) {
+                return n1 * x * x;
+            } else if (x < 2 / d1) {
+                return n1 * (x -= 1.5 / d1) * x + 0.75;
+            } else if (x < 2.5 / d1) {
+                return n1 * (x -= 2.25 / d1) * x + 0.9375;
+            } else {
+                return n1 * (x -= 2.625 / d1) * x + 0.984375;
+            }
+        }
+        
+        function easeInBounce(x) {
+            return 1 - easeOutBounce(1 - x);
+        }
+
+        function easeOutElastic(x) {
+            const c4 = (2 * Math.PI) / 3;
+
+            return x === 0
+            ? 0
+            : x === 1
+            ? 1
+            : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+        }
     </script>
 </body>
 </html>
