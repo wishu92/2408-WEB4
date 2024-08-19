@@ -77,25 +77,24 @@
             margin: 0 auto;
             margin-bottom: 100px;
 
-            opacity: 0;
-            transform: translateX(200px);
-
-            transition: 0.3s;
-
         }
-
-                
-        .section-container.active{
-            opacity: 1;
-            transform: none;
-        }
-
-
+        
         .sub-section {
             display: flex;
             align-items: end;
             margin-bottom: 30px;
+            
+            opacity: 0;
+            
+            transform: translateX(200px);
+            transition: 0.3s;
         }
+
+        .sub-section.active{
+            opacity: 1;
+            transform: none;
+        }
+
         h2 {
             font-size: 35px;
             color: #555;
@@ -107,13 +106,21 @@
             height: 10px;
             border-radius: 50%;
         }
-        h3 {
+        .explain {
             color: #999;
             font-size: 16px;
             line-height: 25px;
             font-weight: bold;
 
+            opacity: 0;
+            transition: 0.3s;
+            transform: translateX(200px);
+
             margin-bottom: 40px;
+        }
+        .explain.active{
+            opacity: 1;
+            transform: none;
         }
 
 
@@ -145,10 +152,25 @@
                 <h2>24시간 언제나</h2>
                 <div class="circle"></div>
             </div>
-            <h3>한밤중이나 주말에도 스마트폰으로<br>
+            <h3 class="explain">한밤중이나 주말에도 스마트폰으로<br>
                 시간에 구애받지 않고<br>
                 쏘카와 함께 이동하세요.</h3>
             <figure>
+                <img src="image/차웃는사람.jpg" alt="">
+            </figure>
+        </div>
+</section>
+
+<section>
+        <div class="section-container">
+            <div class="sub-section">
+                <h2>24시간 언제나</h2>
+                <div class="circle"></div>
+            </div>
+            <h3 class="explain">한밤중이나 주말에도 스마트폰으로<br>
+                시간에 구애받지 않고<br>
+                쏘카와 함께 이동하세요.</h3>
+            <figure class="explain-img">
                 <img src="image/차웃는사람.jpg" alt="">
             </figure>
         </div>
@@ -168,14 +190,14 @@
     let 이전값 = window.scrollY
 
     window.addEventListener(`scroll`,()=>{
-        if(window.scrollY > 이전값 && window.scrollY < ratio){
+        if(window.scrollY > 이전값 ){
             header.classList.add(`hide`)
         }else{
             header.classList.remove(`hide`)
         }
         이전값 = window.scrollY
 
-        if(window.scrollY < ratio) {
+        if(window.scrollY < ratio ) {
                 header.classList.add('fixed')
             }else {
                 header.classList.remove('fixed')
@@ -184,57 +206,36 @@
     })
 
 
-    const sectionContainer = document.querySelectorAll('.section-container'); 
-    const subSection = document.querySelector(`.sub-section`)
+    const sectionContainer = document.getElementsByClassName(`section-container`)
+    const subSection = document.querySelectorAll(`.sub-section`)
+    const explain = document.querySelector(`.explain`)
+    console.log(explain)
 
-        
-        window.addEventListener('scroll',(e)=>{
 
-            const pos = sectionContainer.getBoundingClientRect();
+    인터렉션(subSection)
+    인터렉션(explain)
 
-            if(pos.top <= window.innerHeight - pos.height){
-                sectionContainer.classList.add('active');
-            
-            }else {
-                sectionContainer.classList.remove('active');
+
+
+
+        function 인터렉션(요소){
+            for(let i = 0 ; i < 요소.length ; i ++){
+
+                window.addEventListener('scroll',(e)=>{                
+                    const pos = 요소[i].getBoundingClientRect();    
+
+                if(pos.top <= window.innerHeight - pos.height){
+                    요소[i].classList.add('active');
+
+                }else {
+                    요소[i].classList.remove('active');
+                }
+
+                })
             }
-
-        })
-
-        window.addEventListener('scroll',(e)=>{
-
-const pos = subSection.getBoundingClientRect();
-
-if(pos.top <= window.innerHeight - pos.height){
-    subSectionr.classList.add('active');
-
-}else {
-    subSection.classList.remove('active');
-}
-
-})
-
-
-
-        // for(let i = 0 ; i < sectionContainer.length ; i ++){
-        //     인터렉션()
-        // }
-
-
-
-        // function 인터렉션(){
-        //     window.addEventListener('scroll',(e)=>{                
-        //         const pos = sectionContainer[i].getBoundingClientRect();    
-
-        //     if(pos.top <= window.innerHeight - pos.height){
-        //         contentsectionContainer[i].classList.add('active');
-                
-        //     }else {
-        //         sectionContainer[i].classList.remove('active');
-        //     }
             
-        // })
-        // }
+     
+        }
 
       
     </script>
