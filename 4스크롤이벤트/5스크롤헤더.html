@@ -20,11 +20,14 @@
             background-color: #00000080;
             transition: 0.3s;
         }
-        .hide {
+        header.hide {
             opacity: 0;
             transform: translateY(-100%);
         }
 
+        header.scrolled {
+            background-color: cadetblue;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +47,12 @@
                 header.classList.remove(`hide`)
             }
             이전값 = window.scrollY
+
+            if(window.scrollY > 300){
+                header.classList.add(`scrolled`)
+            }else {
+                header.classList.remove(`scrolled`)
+            }
         })
         
 
