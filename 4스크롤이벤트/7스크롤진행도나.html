@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 5000px;
+            background-image: linear-gradient(0,white,purple)
+            /* 0, 초기값, 끝값 */
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+            /* 스크롤바만 없애기(스크롤은 됨) */
+        }
+        .bar {
+            height: 20px;
+            background-color: rgb(141, 77, 77);
+            position: fixed;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bar">    </div>  
+    
+    <script>
+        const bar = document.querySelector(`.bar`);
+        // const 높이 = 5000;
+        // // const 브라우저높이 = window.innerHeight;
+        // let 현재값 = window.scrollY;
+        // let 진행도 = 현재값/높이;
+        
+
+        
+        // window.addEventListener('scroll',()=>{
+        //     bar.style.width = `${진행도*100}%`
+            
+        // })
+
+
+
+        getProgress()
+        window.addEventListener('scroll',getProgress);
+        // window.addEventListener('resize',getProgress);
+
+        console.log(`scroll event!`)
+        console.log(`resize event!`)
+
+        
+
+        function getProgress(){
+            const 전체길이 = document.body.clientHeight;
+            const 현재스크롤 = window.scrollY;
+
+            const 진행도 = 현재스크롤 / (전체길이 - window.innerHeight);
+            console.log(진행도)
+            bar.style.width = `${진행도*100}%`
+        }
+
+    </script>
+</body>
+</html>
