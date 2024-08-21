@@ -43,9 +43,12 @@
 
         const bar = document.querySelector('.bar');
 
-        getProgress()
+        getProgress();
+        // 화면이 load되었을 떄 한번 실행, 따라서 width는 없애줌.
         window.addEventListener('scroll',getProgress);
-        window.addEventListener('resize',getProgress);
+        window.addEventListener('resize',getProgress)
+
+
 
         function getProgress(){
             const 전체길이 = document.body.clientHeight;
@@ -55,6 +58,8 @@
             console.log(진행도)
             bar.style.width = `${진행도*100}%`
         }
+
+        
 
     </script>
 </body>
