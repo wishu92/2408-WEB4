@@ -33,34 +33,36 @@
     <section id="target"> </section>
     <div class="space"></div>
     <div class="progress">0%</div>
-    
-    <!-- target이 view에 들어오는 시점부터 0%로 시작해 -->
-     <!-- view에서 사라지는 시점에 100%가 될수 있게끔 -->
-      <!-- progress.innerText를 조절 해봅시다 -->
+</body>
 
-    <script>
+<script>
+// 현재 구간진행도는
+// 타겟이 뷰에 들어오는순간부터 나오는 순간까지를 범위로 합니다
 
-    const target = document.getElementById('target');
+// 구간진행도2.html
+
+// 타겟이 뷰에 완전히 들어오는 순간부터
+// 나가기 시작하는 순간까지를 범위로
+
+const target = document.getElementById('target');
     const progress = document.querySelector('.progress')
 
     window.addEventListener('scroll',()=>{
         const targetPos = target.getBoundingClientRect()
-        // 바닥으로부터 target의 거리
-        const distance = (targetPos.top - window.innerHeight)*-1
-        console.log(distance)
-        // distance 기준으로 최댓값(100%가 되는 지점)
-        const maxDistance = targetPos.height + window.innerHeight;
-        const ratio = clamp(distance/maxDistance,0,1)
+     
+        const distance = targetPos.top *-1
+        const maxDistance = targetPos.height - window.innerHeight;
+        const ratio = Math.min(Math.max(distance/maxDistance,0),1)
+        // const ratio = clamp(distance/maxDistance,0,1) 
+        // 함수로 만들어서 위와같이 사용가능.
         progress.innerText = `${parseInt(ratio*100)}%`
-
+        console.log(distance/maxDistance)
         })
 
-    function clamp(value,min,max){
-        return Math.max(Math.min(value,max),min)
-        // math.min(값,1) = 값이 1보다 작으면 값이 채택됨. 근데 1보다 커지면 무조건 1만.
-    }
-
-
-    </script>
-</body>
+        // 
+    // function clamp(value,min,max){
+    //     return Math.max(Math.min(value,max),min)
+        
+    // }
+</script>
 </html>
