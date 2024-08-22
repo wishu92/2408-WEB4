@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/reset.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 10000px;
+        }
+        
+
+
+        #패럴렉스 {
+            width: 5000px;
+            height: 100vh;
+            
+            background-image: linear-gradient(90deg,#000,#fff);
+
+            position: fixed;
+            border: 3px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <section id="패럴렉스">
+
+    </section>
+
+
+    <script>
+
+        const 섹션 = document.getElementById('패럴렉스');
+        const scrollbarWidth = window.innerWidth -document.body.clientWidth;
+
+        document.body.style.height = `${섹션.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+        // 브라우저의 넓이에서 삐져나오는 섹션의 넓이를 구해서, body의 높이 아래에 다가 붙여준 것.
+        window.addEventListener(`resize` , ()=>{
+            document.body.style.height = `${섹션.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+            // 계속 새로고침하지 않고, resize 될때 마다 적용
+        })
+     
+        window.addEventListener('scroll', () =>{
+            섹션.style.transform = `translateX(-${window.scrollY}px)`
+        })
+
+        
+    </script>
+
+</body>
+</html>

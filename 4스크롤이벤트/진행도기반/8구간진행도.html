@@ -50,6 +50,7 @@
         console.log(distance)
         // distance 기준으로 최댓값(100%가 되는 지점)
         const maxDistance = targetPos.height + window.innerHeight;
+        // console에 찍어보면서 계산하기. 시작값 구하고, 거리range구하면 됨.
         const ratio = clamp(distance/maxDistance,0,1)
         progress.innerText = `${parseInt(ratio*100)}%`
 
