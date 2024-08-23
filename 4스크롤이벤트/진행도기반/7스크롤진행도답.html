@@ -43,14 +43,14 @@
 
         const bar = document.querySelector('.bar');
 
-        getProgress();
+        getScrollProgress();
         // 화면이 load되었을 떄 한번 실행, 따라서 width는 없애줌.
-        window.addEventListener('scroll',getProgress);
-        window.addEventListener('resize',getProgress)
+        window.addEventListener('scroll',getScrollProgress);
+        window.addEventListener('resize',getScrollProgress)
 
 
 
-        function getProgress(){
+        function getScrollProgress(){
             const 전체길이 = document.body.clientHeight;
             const 현재스크롤 = window.scrollY;
 

@@ -48,18 +48,18 @@
 
 
 
-        getProgress()
+        getScrollProgress()
         // 일단 한번 돌리고,
 
         // addEventL(scroll.함수) scroll,resize 할 때마다 함수를 사용하겠다
-        window.addEventListener('scroll',getProgress);
+        window.addEventListener('scroll',getScrollProgress);
 
         // 위와 같은식, 함수 옆 괄호 사용방법 숙지
         // window.addEventListener(`scroll`,()=>{
         //     getProgress();
         // }) 
 
-        window.addEventListener('resize',getProgress);
+        window.addEventListener('resize',getScrollProgress);
         // 화면 길이가 변경되었을때, 반응형일때 다시 브라우저의 사이즈를 확인하는것
 
         console.log(`scroll event!`)
@@ -67,7 +67,7 @@
 
         
 
-        function getProgress(){
+        function getScrollProgress(){
             const 전체길이 = document.body.clientHeight;
             const 현재스크롤 = window.scrollY;
 
@@ -76,6 +76,9 @@
             bar.style.width = `${진행도*100}%`
         }
 
+        
+
     </script>
+    <script src="/라이브러리화/getTargetScrollProgress.js"></script>
 </body>
 </html>
