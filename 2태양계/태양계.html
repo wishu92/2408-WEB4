@@ -167,7 +167,7 @@
         
         for(let i = 0 ; i < revolutions.length ; i++) {
             // Number=숫자로쓰겠다.(revolutions은 문자로 ) playRate 숫자가 클수록 빨라짐.
-            revolutions[i].style.animationDuration = `${Number(revolutions[i].dataset.revolution)/playRate}s`
+            revolutions[i].style.animationDuration = `${(revolutions[i].dataset.revolution)/playRate}s`
         }
         
     </script>
