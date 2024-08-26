@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .space {
+            height: 1500px;
+            background-color: gray;
+        }
+
+        #target {
+            height: 3000px;
+            /* 패럴렉스할때 body의 height로 생각하기 */
+        }
+
+        .view {
+            /* view는 패럴렉스 부분인데, 안보이는 부분은 가려줘야하므로
+            overflow hidden을 부모에게 줘야하는데 주면, position이 먹혀버림.
+            따라서 넓이,높이를 100%으로 만들고 안에 박스를 하나 더(horizon) 만들어주기*/
+            width: 100%;
+            height: 100vh;
+            /* height를 100%로 주면 무한대생성. */
+            position: sticky;
+            overflow: hidden;
+            background-color: pink;
+            top: 0px;
+        }
+
+        .horizon {
+            width: 5000px;
+            height: 100%;
+            /* 부모가 auto로 100% 무한대이면 작동X */
+            background-image: linear-gradient(90deg, purple, #fff);
+        }
+
+    </style>
+</head>
+<body>
+    <section class="space"></section>
+    <section id="target">
+        <div class="view">
+            <div class="horizon"></div>
+        </div>
+    </section>
+    <section class="space"></section>
+
+    <script>
+        // 이전 패럴렉스랑 다르게 target(body)의 변화게 따라 horizon이 움직여야 함.
+        const scrollContainer = document.getElementById(`target`)
+        const scrollbarWidth = window.innerWidth - document.body.clientWidth;
+        const horizon = document.querySelector(`.horizon`)
+
+            scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+            // body(target)의 크기를 넣어주기, 
+
+        window.addEventListener(`resize` , ()=>{
+            scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+            
+        })
+     
+        window.addEventListener('scroll', () =>{
+            const pos = scrollContainer.getBoundingClientRect();
+            const range = (horizon.clientWidth - window.innerWidth)*-1;          
+            // range는 최대스크롤 범위, posTop값과 맞춰주기 위해 *-1
+
+            let targetPos;
+            
+
+            // pos가 화면상단에 딱 붙을때 화면에 가득차게 들어왔을때
+            if(pos.top > 0){
+                targetPos = 0;
+                // pos.top = 0
+            }else if(pos.top < range) {
+                targetPos = range;
+                // pos.top = range
+            }else {
+                targetPos = pos.top;
+                // pos.top = pos.top
+            }
+
+            
+            horizon.style.transform = `translateX(${targetPos}px)`
+            // horizon.style.transform = `translateX(${pos.top}px)`
+        })
+        
+    </script>
+</body>
+</html>

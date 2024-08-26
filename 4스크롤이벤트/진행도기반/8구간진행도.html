@@ -45,7 +45,7 @@
 
     window.addEventListener('scroll',()=>{
         const targetPos = target.getBoundingClientRect()
-        // 바닥으로부터 target의 거리
+        // targetPos.top = 바닥으로부터 target의 거리
         const distance = (targetPos.top - window.innerHeight)*-1
         console.log(distance)
         // distance 기준으로 최댓값(100%가 되는 지점)
