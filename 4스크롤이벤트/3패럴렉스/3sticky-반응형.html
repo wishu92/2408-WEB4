@@ -46,20 +46,20 @@
         @media screen and (max-width:1400px) {
             /* 1400 이하일 때 아래 조건이 활성화됨, css는 아래위치할 수록 더 강함. 
             덮어쓰기 됨. 1400 이하일 때 활성화 된다고 생각하기.*/
-            #target {
+            .horizon-scroll-container {
                 height: auto!important;
             }
 
-            .view {
+            .horizon-scroll-sticky-view {
                 height: auto;
                 position: relative;
             }
 
-            .horizon {
+            .horizon-scroll-move-container {
                 width: 100%;
                 
             }
-            .wrapper {
+            .horizon-scroll-target {
                 flex-direction: column;
             }
         }
@@ -67,10 +67,10 @@
 </head>
 <body>
     <section class="space"></section>
-    <section id="target">
+    <!-- <section id="target">
         <div class="view">
-            <div class="horizon">
-                <ul class="wrapper">
+            <div class="horizon"> -->
+                <ul class="horizon-scroll-target">
                     <li class="content"></li>
                     <li class="content"></li>
                     <li class="content"></li>
@@ -79,12 +79,43 @@
                     <li class="content"></li>
                     <li class="content"></li>
                 </ul>
-            </div>
+                <!-- 실제로는 ul>li*n 만 작성할것이다(가로스크롤할 컨텐츠).
+                 이때 가로스크롤 구현에 필요한 target, view, horizon은 자동으로 생성 되어야한다.
+                 js에는 ul.wrapper만 가져올 수 있도록.-->
+            <!-- </div>
         </div>
-    </section>
+    </section> -->
     <section class="space"></section>
 
     <script>
+
+        const target = document.querySelector(`.horizon-scroll-target`)
+        
+        const horizonContainer = document.createElement(`div`)
+        horizonContainer.classList.add(`horizon-scroll-container`)
+
+        const horizonSticky = document.createElement(`div`)
+        horizonSticky.classList.add(`horizon-scroll-sticky-view`)
+
+        const moveContainer = document.createElement(`div`)
+        moveContainer.classList.add(`horizon-scroll-move-container`)
+
+        moveContainer.appendChild(wrapper)
+        horizonContainer.appendChild(horizon)
+        moveContainer.appendChild(view)
+
+
+        const brakePoint = 1400; 
+        // 반응형 구간 1400
+        const scrollContainer = document.getElementById('target');
+        const scrollbarWidth = window.innerWidth - document.body.clientWidth
+        // const horizon = document.querySelector('.horizon');
+
+        
+
+        const applyPos = (pos) => {
+            horizon.style.transform = `translateX(${Pos}px)`
+        }
 
         const moveHorizonScroll =()=>{
             // 함수화 하는방법, 이거랑 같음 function moveHorizonScroll() {}
@@ -100,30 +131,29 @@
             }else {
                 targetPos = pos.top;
             }
-
-            horizon.style.transform = `translateX(${targetPos}px)`
+            
+            if(brakePoint > 1400){
+                applyPos(targetPos)
+            }else{
+                applyPos(0)
             }
+        }
 
 
-        const scrollContainer = document.getElementById('target');
-        const scrollbarWidth = window.innerWidth - document.body.clientWidth
-        const horizon = document.querySelector('.horizon');
+        moveHorizonScroll()
+        //최초로 한번은 실행해야함.
 
         scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
-
+        window.addEventListener('scroll',moveHorizonScroll)
         window.addEventListener('resize',()=>{
             // resize될 때마다 아래 것 
             scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
-
-            window.removeEventListener('scroll',moveHorizonScroll)
-            //일단 remove해놓고,
-            
-            if(window.innerWidth > 1400) {
-                window.addEventListener('scroll',moveHorizonScroll)
-            }
-            // 만약 1400보다 크면 패럴렉스 하겠다.
+            moveHorizonScroll()
+            // 마지막에도 한번 실행해줘야 정리가 됨?
         })
 
     </script>
 </body>
 </html>
+
+<!-- 리사이즈가 되면 문제가 해소되는 이유 -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .space {
+            height: 3000px;
+            background-color: gray;
+        }
+        .wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        .content {
+            flex-shrink: 0;
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+
+        @media screen and (max-width:800px) {
+            .wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="space"></section>
+
+    <ul class="wrapper"> 
+        <li class="content"></li>
+        <li class="content"></li>
+        <li class="content"></li>
+        <li class="content"></li>
+        <li class="content"></li>
+        <li class="content"></li>
+        <li class="content"></li>
+    </ul>
+
+    <section class="space"></section>
+
+    <script src="../라이브러리화/makeHorizonScroll.js"></script>
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        makeHorizonScroll(wrapper,800);
+        // <!-- 리사이즈가 되면 문제가 해소되는 이유 -->
+    </script>
+</body>
+</html>
