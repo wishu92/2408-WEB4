@@ -8,19 +8,19 @@ function makeHorizonScroll(target,brakePoint) {
     horizonContainer.classList.add('horizon-scroll-container')
 
     target.parentElement.insertBefore(horizonContainer,target)
-    // div들 생성하기만 하는게 아니라 적합한 html에 끼워넣어야함. 따라서 상위div만들어서 미리끼워넣기
-    //target의 부모요소에 끼워넣기.
-    // horizonContainer를 삽입, target전에.???
+    // div들 생성하기만 하는게 아니라 적합한 html에 끼워넣어야함. 
+    // 따라서 상위div만들어서 미리끼워넣기 target의 부모요소로 끼워넣기.
+    // horizonContainer를 삽입, target전에(미리 만들어놓은 박스)
    
 
-    const horizonSticky = document.createElement('div')
-    horizonSticky.classList.add("horizon-scroll-sticky-view")
+    const horizonSticky = document.createElement('div');
+    horizonSticky.classList.add("horizon-scroll-sticky-view");
 
     const moveContainer = document.createElement('div');
-    moveContainer.classList.add('horizon-scroll-move-container')
+    moveContainer.classList.add('horizon-scroll-move-container');
 
     horizonContainer.appendChild(horizonSticky);
-    horizonSticky.appendChild(moveContainer)
+    horizonSticky.appendChild(moveContainer);
     moveContainer.appendChild(target);
    
 
@@ -34,7 +34,7 @@ function makeHorizonScroll(target,brakePoint) {
     const moveHorizonScroll =()=>{
 
         const pos = horizonContainer.getBoundingClientRect();
-        const range = window.innerWidth - moveContainer.clientWidth;
+        const range = (moveContainer.clientWidth - window.innerWidth)*-1;
         let targetPos;
 
         if(pos.top > 0){
@@ -65,10 +65,11 @@ function makeHorizonScroll(target,brakePoint) {
             horizonSticky.style.position = 'relative'
             moveContainer.style.width = `100%`;
         }else {
+            moveContainer.style.width = `fit-content`
             horizonContainer.style.height = `${moveContainer.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`
+            // 컨텐츠의 넓이에 따라 높이가 만들어져야 하므로 css순서중요
             horizonSticky.style.height = `100vh`
             horizonSticky.style.position = 'sticky'
-            moveContainer.style.width = `fit-content`
         }
     }
 
