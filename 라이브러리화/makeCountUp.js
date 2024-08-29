@@ -15,7 +15,7 @@ function makeCountUp(target, goal, duration, accFunc = 'ease', frame = 60){
         }else if(accFunc === 'linear') {
             progressFunc = (x)=>{
                 return x
-                // 기본이 등속linear임.
+                // 기본이 등속linear이니까
             };
         }else {
             throw new Error("잘못된 가속도 함수 입니다.");
@@ -31,6 +31,7 @@ function makeCountUp(target, goal, duration, accFunc = 'ease', frame = 60){
 
     } catch (e) {
         console.error(e);
+        // e에 저장된 정보를 console로 출력, log문과 error문이 있음.
     }
 
     function easeInOutCubic(x) {

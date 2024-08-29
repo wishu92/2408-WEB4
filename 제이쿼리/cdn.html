@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <!-- CDN - contents delivery network 컨텐츠 전송 네트워크 , crtl 클릭하면 링크접속-->
+</head>
+    <style>
+        .text {
+            display: none;  
+        }
+
+    </style>
+<body>
+    <p class="text">안녕</p>
+    <button class="continue"></button>
+    <script>
+        $(`button.continue`).html(`Next Stop...`);
+        
+        document.querySelector(`.continue`).innerHTML = `<p>Next Stop</p>`
+
+        // $(`.continue`).on(`click`,()=>{
+        //     $(`.text`).show();
+        //     $(`.text`).css(`display`,`flex`);
+
+        // }); 아래와 같음.
+
+        const continueButton = document.querySelector(`.continue`)
+        // continue는 for문 안에서 쓰이는 예약언어이기때문에 사용할 수 없는 이름.
+        const textTag = document.querySelector(`.text`);
+
+        continueButton.addEventListener(`click`,()=>{
+            textTag.style.display = `flex`
+        })
+
+        // 프론트엔드 개발 연습 = 백준
+        // js 개발 연습=프로그래머스
+
+    </script>
+</body>
+</html>
