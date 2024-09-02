@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        height: 5000px;
+    }
+</style>
+<link rel="stylesheet" href="../라이브러리화/modal.css">
+<body>
+    <button class="open">모달열기</button>
+</body>
+
+    <script src="../라이브러리화/modal.js"></script>
+    <script>
+        const openButton = document.querySelector(`.open`)
+
+        openButton.addEventListener(`click`,()=>{
+            openModal(`안내사항`,`모달모달 문열고 닫기방법`);
+        })
+    </script>
+</html>
