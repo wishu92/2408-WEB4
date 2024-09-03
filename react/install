@@ -1,9 +1,10 @@
 0. node.js 다운로드 -> vs다시실행 -> ctrl + `(터미널켜기) -> node -v 치키-->
 1. PS C:\Users\Admin\Documents\GitHub\2408-WEB4> node -v
 2. PS C:\Users\Admin\Documents\GitHub\2408-WEB4> npm install -g create-react-app
-3. PS C:\Users\Admin\Documents\GitHub\2408-WEB4> cd react
+3. PS C:\Users\Admin\Documents\GitHub\2408-WEB4> cd react (react라는 폴더안에 만들기위해)
 4 .PS C:\Users\Admin\Documents\GitHub\2408-WEB4\react> npx create-react-app my-react-app
-5. 두줄붙여넣기
+5. cd react-app
+  npm start  -> 이거 두줄 붙여넣기
 6. vscode의 설정에 들어가(Ctrl+Shift+P) setting.json에 아래 코드를 추가해준다. -> 자동실행코드
 
 
