@@ -1,0 +1,6 @@
+PS C:\Users\Admin\Documents\GitHub\2408-WEB4> node -v
+PS C:\Users\Admin\Documents\GitHub\2408-WEB4> npm install -g create-react-app
+PS C:\Users\Admin\Documents\GitHub\2408-WEB4> cd react
+PS C:\Users\Admin\Documents\GitHub\2408-WEB4\react> npx create-react-app my-react-app
+두줄붙여넣기
+vscode의 설정에 들어가(Ctrl+Shift+P) setting.json에 아래 코드를 추가해준다.
