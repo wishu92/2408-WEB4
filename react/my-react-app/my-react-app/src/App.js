@@ -1,28 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 import Post from './Post';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
 
 function App() {
+
   const element = <h1 className='title'>안녕하세요 h1입니다</h1>
+
   const data = [{
       title : '첫글은 내꺼야',
       text : '반갑습니다'
     },{
-      title : '오늘의 날씨',
-      text : '맑음'
+      title : '오늘의 점심',
+      text : '김밥'
     },{
-      title : '점심메뉴',
-      text : '김치찌개'
+      title : '컴퓨터수업',
+      text : '어렵지'
     }]
 
+
+    // useState, useEffect, useContext, useRef, useReducer
+    // let number = 0 ;
     const [ number , setNumber ] = useState(0)
-    const handleIncressNumber = () => {
+    const handleIncressNumber = () =>{
       setNumber(number+1)
     }
 
-    const [text,setText] = useState ('')
-    const handlechangeText = (e) => {
+    const [text,setText] =useState('');
+    const handleChangeText = (e) =>{
       setText(e.target.value)
     }
 
@@ -33,15 +39,14 @@ function App() {
     }
 
 
+
+
+
   return (
     <div className="App">
       {element}
-      {/* {data.map((value,key)=>{
-        return <p>{value.title}</p>
-      })}  아래와 같음, 
-      data 배열 안에있는 title을 map은 반복문을 통해 가져옴*/}
 
-<span>{number}</span>
+      <span>{number}</span>
       <button onClick={handleIncressNumber}>딸깍</button>
 
       <input type="text" onChange={handleChangeText}/>
@@ -59,8 +64,12 @@ function App() {
         <Post 제목={value.title} 내용={value.text}></Post>
       )}
     </div>
-
-  )
+  );
 }
 
 export default App;
+
+      {/* {data.map((value,key)=>{
+        return <p>{value.title}</p>
+      })}  아래와 같음, 
+      data 배열 안에있는 title을 map은 반복문을 통해 가져옴*/}
