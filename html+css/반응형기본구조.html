@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            /* 블럭요소라서 width 100%가 기본 */
+            padding: 0 32px;
+            /* padding은 section에 넣어야 내부 컨테이너의 크기를 유지할 수 있음. */
+            background-color: bisque;
+        }
+        .section-container{
+            /* width 100%가 기본이라 최대값만 넣어주기. */
+            max-width: 1365px;
+            margin: 0 auto;
+            box-sizing: border-box;
+
+            padding: 100px 0;
+            /* section에 직접 padding을 주기보다 내부컨테이너에 줘야 유지보수가 좀 수월할거 같음. */
+        }
+        .test{
+            width: 100%;
+            height: 600px;
+            background-color: pink;
+        }
+
+        @media screen and (max-width:768px) {
+            /* pc기준으로 만들었을 때 모바일 반응형크기 조절하는법 */
+            section{
+                padding: 0 20px;
+                /* 모바일에서는 padding이 줄어야함. */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section>
+        <div class="section-container">
+            <div class="test"></div>
+        </div>
+    </section>
+    <section style="background-color: brown;">
+        <div class="section-container">
+            <div class="test"></div>
+        </div>
+    </section>
+    
+</body>
+</html>
