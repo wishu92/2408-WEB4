@@ -22,6 +22,7 @@
         }
 
         .section {
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -70,7 +71,7 @@
             width: 10px;
             /* 닷의 크기 */
             height: 10px;
-            background-color: var(--accent-color);
+            background-color: gray;
             /* 기본 닷 색상 */
             border-radius: 50%;
             /* 원형으로 설정 */
@@ -79,22 +80,22 @@
         }
 
         .dot.active::before {
-            background-color: var(--main-text-color);
+            background-color: white;
             /* 활성 상태 닷 색상 */
         }
 
         .dot:hover::before {
-            background-color: var(--main-text-color);
+            background-color: white;
             /* 호버 상태 닷 색상 */
         }
 
         .dot.active {
-            color: var(--main-text-color);
+            color: white;
             /* 활성 상태 텍스트 색상 */
         }
 
         .dot:hover {
-            color: var(--accent-color);
+            color: gray;
             /* 호버 상태 텍스트 색상 */
         }
     </style>
