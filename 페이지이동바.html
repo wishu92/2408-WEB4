@@ -22,52 +22,80 @@
         }
 
         .section {
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
         }
 
         /* Dot Navigation 스타일 */
         .dot-navigation {
             position: fixed;
             top: 50%;
-            left: 20px;
+            right: 20px;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            z-index: 1;
         }
 
         .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: gray;
-            cursor: pointer;
             display: flex;
-            justify-content: center;
+            /* 플렉스 컨테이너 설정 */
             align-items: center;
-            transition: all 0.3s;
+            /* 수직 가운데 정렬 */
+            justify-content: flex-start;
+            /* 플렉스 아이템 정렬 */
+            flex-direction: row-reverse;
+            /* 섹션 이름을 왼쪽에 배치 */
+            gap: 10px;
+            /* 닷과 섹션 이름 간격 설정 */
+
+            cursor: pointer;
+            font-family: "Crimson Pro";
+            font-size: 18px;
             color: transparent;
-            /* 기본적으로 이름 숨김 */
-            font-size: 0.8rem;
+            /* 기본 텍스트 숨김 */
             white-space: nowrap;
-            padding: 5px 10px;
-            border: 1px solid transparent;
+            /* 줄바꿈 방지 */
+            transition: all 0.3s;
+            background-color: transparent;
+            /* 닷 배경 제거 */
+        }
+
+        .dot::before {
+            content: "";
+            /* 닷(원) 추가 */
+            width: 10px;
+            /* 닷의 크기 */
+            height: 10px;
+            background-color: var(--accent-color);
+            /* 기본 닷 색상 */
+            border-radius: 50%;
+            /* 원형으로 설정 */
+            flex-shrink: 0;
+            /* 크기가 줄어들지 않도록 설정 */
+        }
+
+        .dot.active::before {
+            background-color: var(--main-text-color);
+            /* 활성 상태 닷 색상 */
+        }
+
+        .dot:hover::before {
+            background-color: var(--main-text-color);
+            /* 호버 상태 닷 색상 */
         }
 
         .dot.active {
-            background-color: white;
-            color: white;
-            border-color: white;
+            color: var(--main-text-color);
+            /* 활성 상태 텍스트 색상 */
         }
 
         .dot:hover {
-            background-color: white;
-            color: gray;
+            color: var(--accent-color);
+            /* 호버 상태 텍스트 색상 */
         }
     </style>
 </head>
