@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
   <style>
-
-/* 
+    /* 
     .container {
       text-align: center;
       padding: 50px;
@@ -42,6 +42,8 @@
     }
 
     .modal-content {
+      position: relative;
+      /* 닫기 버튼의 기준점 설정 */
       background-color: white;
       padding: 20px;
       border-radius: 10px;
@@ -49,13 +51,15 @@
       max-width: 600px;
       height: 70%;
       overflow-y: auto;
-      position: relative;
     }
 
     .close-button {
       position: absolute;
+      /* modal-content 내부에서 고정 */
       top: 10px;
+      /* modal-content의 상단에서 10px */
       right: 10px;
+      /* modal-content의 오른쪽에서 10px */
       background-color: #ff5e57;
       color: white;
       border: none;
@@ -70,6 +74,7 @@
     .close-button:hover {
       background-color: #e04848;
     }
+
 
     .visit-site-button {
       display: block;
@@ -91,10 +96,11 @@
     }
   </style>
 </head>
+
 <body>
 
-    <button class="link-button" onclick="openModal('site1')">VIEW</button>
-    <button class="link-button" onclick="openModal('site2')">VIEW</button>
+  <button class="link-button" onclick="openModal('site1')">VIEW</button>
+  <button class="link-button" onclick="openModal('site2')">VIEW</button>
 
 
   <!-- Modal -->
@@ -130,6 +136,15 @@
     function closeModal() {
       modal.style.display = 'none';
     }
+
+    // 모달 외부 클릭으로 닫기
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
   </script>
 </body>
+
 </html>
